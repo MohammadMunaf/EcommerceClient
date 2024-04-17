@@ -91,15 +91,17 @@ body {
     justify-content: left;
     font-size:xx-large;
 }
-.newArrival{
-    background-color: rgb(255, 255, 255);
-    min-height: 600px;
-    width: 100%;
-    color: rgb(51, 84, 94);
+.subheader{
+    background-color: transparent;
+    color: rgb(255, 254, 254);
+    margin-top: -200px;
+    padding-left: 50px;
+    position: absolute;
+    display: flex;
+    justify-content: left;
+    font-size:medium;
 }
-.newArrival h1{
-    padding:20px 0 0 40px;
-}
+
 
 
 

@@ -1,12 +1,17 @@
 
 .navbar {
+    overflow: hidden;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem;
+    /* padding: 1rem; */
     background-color: rgb(29, 58, 81);
     color: #fff;
-    height: 50px;
+    height: 82px;
+    position: 'fixed';
+    top:0;
+    width: '100%';
+    zIndex: 1000;
 }
 
 .navbar a {

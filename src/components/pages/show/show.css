@@ -1,0 +1,35 @@
+.body{
+    /* height:100vh; */
+    display: flex;
+    justify-content: center;
+    /* padding-top: 5%; */
+    font-family: "Open Sans", sans-serif;
+}
+.item{
+    width: 89%;
+    height:70%;
+    display: flex;
+    margin:0px;
+    padding-top: 5%;
+}
+.details{
+    display: flex;
+    flex-direction: column;
+    margin:0%;
+    padding-left:3%;
+}
+h1{
+    margin:0;
+}
+.referanceImage{
+    display: flex;
+    justify-content: center;
+}
+.addCart Button:hover{
+    background-color: rgb(20, 136, 224);
+    color: rgb(200, 38, 38);
+}
+.quantity{
+    display: flex;
+    align-items: center;
+}

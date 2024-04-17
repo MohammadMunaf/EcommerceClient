@@ -10,6 +10,7 @@ import Badge from '@mui/material/Badge';
 import { styled } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
 import { useSelector } from "react-redux";
+import { Link} from 'react-router-dom';
 
 
 let products=[];
@@ -31,7 +32,7 @@ export default function Navbar() {
     }
     return (
         <div className='navbar'>
-            <RoofingRoundedIcon />
+            <Button><Link to='/'><RoofingRoundedIcon /></Link></Button>
             <SearchBar />
             <div>
                 <IconButton onClick={() => handleCart()} aria-label="cart">

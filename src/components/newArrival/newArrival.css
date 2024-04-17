@@ -1,2 +1,30 @@
-
-
+.newArrivalsCollections{
+    width: 100%;
+    margin-top: 70px;
+}
+.newArrivalsCollections h1{
+    color: rgb(29, 58, 81);
+}
+.products{
+    width:100%;
+    height: 650px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.newArrivalProduct{
+    width: 90%;
+    height:85%;
+}
+.products .product{
+    border-radius:0;
+    border: 0.2px solid rgb(189, 197, 202);
+}
+.Card a{
+    text-decoration: none;
+    color:rgb(29, 58, 81);
+}
+.newArrival{
+    display: flex;
+    align-items: center;
+}

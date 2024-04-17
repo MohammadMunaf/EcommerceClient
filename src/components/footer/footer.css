@@ -9,6 +9,15 @@
 }
 h5{
     margin: 0;
+    color:white;
+    text-decoration: none;
+}
+.copyRight a{
+    color:white;
+    text-decoration: none;
+}
+.copyRight  a:hover{
+    color:black;
 }
 .copyRight{
     margin-top: 30px;

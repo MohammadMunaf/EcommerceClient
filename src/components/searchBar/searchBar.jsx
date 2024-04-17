@@ -68,15 +68,16 @@ export default function SearchBar() {
         Axios.get(`${baseUrl}/search?q=${input}`)
             .then((response) => {
                 setproduct(response.data);
-                navigate('/searchItems', { state: { fetchedData: response.data} });
-                console.log(response.data);
+                navigate('/searchItems', { state: { fetchedData: response.data } });
+                // console.log(response.data);
             }).catch((e) => {
                 console.log(`error-->${e}`);
             })
-
+            
     }
     const handleChange = (e) => {
         setInput(e.target.value);
+        
     }
     return (
         <div>
@@ -92,7 +93,7 @@ export default function SearchBar() {
                     />
                 </Search>
             </form>
-            {product.length > 0 && <ShowItems product={product} />}
+            {/* {product.length > 0 && <ShowItems product={product} />} */}
         </div>
     )
 }

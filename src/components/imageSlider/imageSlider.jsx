@@ -3,8 +3,6 @@ import { Slide } from 'react-slideshow-image'
 import 'react-slideshow-image/dist/styles.css';
 import './imageSlider.css';
 import { useState } from 'react';
-import AgricultureIcon from '@mui/icons-material/Agriculture';
-import BiotechIcon from '@mui/icons-material/Biotech';
 import Button from '@mui/material/Button';
 import WomanIcon from '@mui/icons-material/Woman';
 import ManIcon from '@mui/icons-material/Man';
@@ -14,7 +12,7 @@ import SkateboardingIcon from '@mui/icons-material/Skateboarding';
 import SatelliteAltIcon from '@mui/icons-material/SatelliteAlt';
 
 
-const Slideshow = () => {
+const ImageSlider = () => {
   const [idx, setIdx] = useState(0);
   const value = [
     "",
@@ -27,7 +25,7 @@ const Slideshow = () => {
     "https://images.pexels.com/photos/974911/pexels-photo-974911.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
     "https://images.pexels.com/photos/3775120/pexels-photo-3775120.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
   ];
-  const proprietes = {
+  const propertes = {
     duration: 3000,
     transitionDuration: 800,
     infinite: true,
@@ -36,7 +34,7 @@ const Slideshow = () => {
   }
   return (
     <div className="slide-container">
-      <Slide {...proprietes}>
+      <Slide {...propertes}>
         {images.map((imageUrl, index) => (
           <div className="each-slide" key={index}>
             <div style={{ weight: '500px', height: '735px', textAlign: 'center', background: `url(${imageUrl}) center no-repeat` }}>
@@ -72,7 +70,7 @@ const Slideshow = () => {
   )
 }
 
-export default Slideshow;
+export default ImageSlider;
 
 
 

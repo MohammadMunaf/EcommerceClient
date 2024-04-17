@@ -5,13 +5,10 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { Link } from 'react-router-dom';
-
-import SideBar from '../../sideBar/sideBar';
-
+import { Link, Navigate } from 'react-router-dom';
+import './productList.css'
 import Axios from 'axios';
-
-import Sorting from '../../sorting/sorting';
+import { useNavigate } from 'react-router-dom';
 import ManIcon from '@mui/icons-material/Man';
 import Woman2Icon from '@mui/icons-material/Woman2';
 import EscalatorWarningIcon from '@mui/icons-material/EscalatorWarning';
@@ -19,7 +16,10 @@ import CandlestickChartIcon from '@mui/icons-material/CandlestickChart';
 import BubbleChartIcon from '@mui/icons-material/BubbleChart';
 import Checkbox from '@mui/material/Checkbox';
 import { baseUrl } from '../../../Url';
+import Footer from '../../footer/footer';
+import Navbar from '../../navbar/navbar';
 export default function ProductList() {
+    const navigate = useNavigate();
     const [checked, setChecked] = useState("false");
     const [allproduct, setallproduct] = useState([]);
     const [alldata, setallData] = useState([]);
@@ -28,7 +28,7 @@ export default function ProductList() {
             .then((response) => {
                 setallproduct(response.data);
                 setallData(response.data);
-                console.log(alldata);
+                console.log(response.data);
             })
             .catch((e) => {
                 console.error(`error-->${e}`);
@@ -39,7 +39,7 @@ export default function ProductList() {
     }, []);
 
     const handleDelete = (id) => {
-        Axios.delete(`http://localhost:3001/delete/${id}`)
+        Axios.delete(`${baseUrl}/delete/${id}`)
             .then((response) => {
                 //console.log(response.data);
                 fetchData("All");
@@ -57,27 +57,27 @@ export default function ProductList() {
             case "a":
                 //less then 500  .
                 product = alldata.filter((p) => p.price < 500);
-                console.log(product);
+                // console.log(product);
                 break;
             case "b":
                 //499-999
                 product = alldata.filter((p) => p.price > 500 && p.price < 1000);
-                console.log(product);
+                // console.log(product);
                 break;
             case "c":
                 //1000-1599
                 product = alldata.filter((p) => p.price > 1000 && p.price < 1599);
-                console.log(product);
+                // console.log(product);
                 break;
             case "d":
                 //1500-1999 
                 product = alldata.filter((p) => p.price > 1500 && p.price < 1999);
-                console.log(product);
+                // console.log(product);
                 break;
             case "e":
                 //above 2000   
                 product = alldata.filter((p) => p.price > 2000);
-                console.log(product);
+                // console.log(product);
                 break;
              default:
                 break;   
@@ -89,7 +89,12 @@ export default function ProductList() {
         product.sort((a, b) => a.price - b.price);
         setallproduct(product);
     }
+    const gotHome=()=>{
+        navigate('/');
+    }
     return (
+        <div>
+            <Navbar/>
         <div className='collections'>
             <div className='sideBar'>
                 <div className='catogory1' style={{ textAlign: "left" }}>
@@ -121,6 +126,7 @@ export default function ProductList() {
                     <h2 >Products List</h2>
                     <Button onClick={() => changeOrder("price")}>sort price</Button>
                     <Button onClick={() => changeOrder("date")}>recent</Button>
+                    <Button onClick={()=>gotHome()}>Home</Button>
                 </div>
                 {allproduct.map((product) => (
                     <Card sx={{ maxWidth: 345 }} className='product' key={product._id}>
@@ -151,7 +157,8 @@ export default function ProductList() {
                     </Card>
                 ))}
             </div>
-            <Button><Link to={'upload'}>addItem</Link></Button>
+        </div>
+        <Footer/>
         </div>
     )
 }

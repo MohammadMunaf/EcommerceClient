@@ -1,0 +1,12 @@
+.mainSearchContent{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.mainSearchContent .items{
+    height:150px;
+    width: 80%;
+    margin-top: 15px;
+    background-color: azure;
+    display: flex;
+}
