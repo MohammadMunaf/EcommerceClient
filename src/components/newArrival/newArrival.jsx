@@ -12,6 +12,7 @@ import { Link } from 'react-router-dom';
 import Axios from 'axios';
 import { Button, CardActionArea, CardActions } from '@mui/material';
 import { baseUrl } from '../../Url';
+import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
 
 
 // let date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
@@ -38,7 +39,7 @@ export default function NewArrival() {
     useEffect(() => {
         fetchData("All");
         var today = new Date();
-        console.log(today);
+        // console.log(today);
         setToday(today);
     }, []);
 
@@ -54,27 +55,27 @@ export default function NewArrival() {
     return (
         <div className='newArrivalsCollections'>
             <div className='newArrival' style={{ width: '100%', height: '140px', backgroundColor: 'white', marginBottom: '20px', marginTop: '20px'}}>
-                <h1 style={{paddingTop:'34px',fontSize:'55px'}}>New Arrival</h1>
+                <h1 style={{paddingTop:'34px',fontSize:'55px',marginLeft:'35px'}}>New Arrival</h1>
+                <p><Link to={'ProductList'} style={{textDecorationLine:'none',color:'rgb(29, 58, 81)',marginRight:'30px',fontSize:'20px'}}>Visit All</Link></p>
             </div>
             <div className='products'>
                 <div className='newArrivalProduct'>
                     {Array.isArray(allproduct) && allproduct.map(product => (
-                        <Card sx={{ width: 245, height: 255, boxShadow: 'none' }} className='product' key={product._id}>
+                        <Card sx={{ width: 290, height: 290, boxShadow: 'none' }} className='product' key={product._id}>
+                            <Link to={`/show/${product._id}`} style={{textDecorationLine:'none'}}>
                             <CardMedia
                                 component="img"
                                 alt="green iguana"
-                                height="140"
-                                image="https://images.pexels.com/photos/845434/pexels-photo-845434.jpeg?auto=compress&cs=tinysrgb&w=800"
+                                height="230"
+                                image="https://roe.filson.eu/cdn/shop/products/FMCPS0012W0200_317_FLS_13_1200x.jpg?v=1693900530"
                             />
-                            <CardContent style={{ padding: '12px' ,textAlign:'center'}}>
-                                <Typography gutterBottom variant="h5" component="div" style={{margin:"0",height:'17px'}}>
-                                    {product.name}
-                                </Typography>
-                                <Typography variant="body2" color="text.secondary">
-                                    <h2>{product.price}</h2>
-                                </Typography>
-                                <Button size="small" color="primary" onClick={() => handleDelete(product._id)}>Delete</Button>
-                            </CardContent>
+                            <div className="newArrivalProductDetails"style={{color:'GrayText',textAlign:'center'}}>
+                                    <span>
+                                    <p style={{margin:'3px',maxHeight:'18.5px'}}>{product.name}</p>
+                                    <h2 style={{margin:'3px',color:'rgb(29, 58, 81)'}}><CurrencyRupeeIcon style={{ fontSize: '15px' }} />{product.price}</h2>
+                                    </span>
+                            </div>
+                            </Link>
                         </Card>
                     ))}
                 </div>
@@ -83,4 +84,8 @@ export default function NewArrival() {
         </div >
     )
 }
+
+{/* <Button size="small" color="primary" onClick={() => handleDelete(product._id)}>Delete</Button> */}
+
+// https://www.backcountry.com/images/items/1200/FSN/FSNI07Q/DARBRO_D5.jpg
 

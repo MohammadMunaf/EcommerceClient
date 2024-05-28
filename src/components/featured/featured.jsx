@@ -26,7 +26,11 @@ export default function Featured() {
     const [allproduct, setallproduct] = useState([]);
     const [today, setToday] = useState("");
     const fetchData = (value) => {
-        Axios.get(`${baseUrl}/products?q=${value}`,{params:{_limit:6}})
+        Axios.get(`${baseUrl}/products?q=${value}`, {
+            params: {
+                _limit: 3
+            }
+        })
             .then((response) => {
                 //console.log(response.data.filter((p)=>p.date==='2024-03-26T09:56:54.157Z'));
                 setallproduct(response.data.filter((p) => p.date >= '2024-04-01'));
@@ -54,37 +58,24 @@ export default function Featured() {
     return (
         <div className='featuredCollections'>
             <div className='featuredHeading' style={{ width: '100%', height: '140px', backgroundColor: 'white', marginBottom: '20px', marginTop: '20px' }}>
-                <h1 style={{ paddingTop: '34px' ,fontSize:'55px'}}>Featured</h1>
-                <Button style={{ color: 'rgb(29, 58, 81)',marginRight:'20px' }}>View all</Button>
+                <h1 style={{ paddingTop: '34px', fontSize: '55px', marginLeft: '50px' }}>Featured</h1>
             </div>
             <div className='featuredProducts'>
-                <div className='productImage'>
-                    <div className='imageText' style={{ marginBottom: '-390px', marginLeft: '20px' ,fontSize:'35px'}}><h1>Discover <br />our<br />Featured <br /> Products</h1></div>
-                    <img src="https://images.pexels.com/photos/325876/pexels-photo-325876.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="" width="730" height="650"  />
+                <div className='featuredProductimg1'>
+                    <img src="https://i.pinimg.com/originals/d6/e0/f8/d6e0f836c9cb95d18278490e31678697.png" alt="" width="490" height="490" />
                 </div>
-                <div className='featuredProduct'>
-                    {Array.isArray(allproduct) && allproduct.map(product => (
-                        <Card sx={{ width: 245, height: 255, boxShadow: 'none' }} className='product' key={product._id}>
-                            <CardMedia
-                                component="img"
-                                alt="green iguana"
-                                height="140"
-                                image="https://images.pexels.com/photos/845434/pexels-photo-845434.jpeg?auto=compress&cs=tinysrgb&w=800"
-                            />
-                            <CardContent style={{ padding: '12px' ,textAlign:'center' }}>
-                                <Typography gutterBottom variant="h5" component="div" style={{margin:"0",height:'17px'}}>
-                                    {product.name}
-                                </Typography>
-                                <Typography variant="body2" color="text.secondary">
-                                    <h2>{product.price}</h2>
-                                </Typography>
-                                <Button size="small" color="primary" onClick={() => handleDelete(product._id)}>Delete</Button>
-                            </CardContent>
-                        </Card>
-                    ))}
+                <div className='featuredProductimg2' style={{marginBottom:'6px'}}>
+                    <img src="https://content.backcountry.com/images/items/900/FSN/FSN0058/DARTN.jpg" alt="" width="302" height="302" />
+                    
                 </div>
+                <div className='featuredProductimg3'>
+                <img src="https://outbrands.cl/cdn/shop/products/ChaquetaShortLinedCruiserDarkTanFilsonOutbrands10.png?v=1713478865" alt="" width="222" height="222" />
+                </div>
+                <div className='imageText' style={{ fontSize: '35px',marginRight:'10px' }}><h1>Discover <br />our<br />Featured <br /> Products</h1></div>
             </div>
-
         </div >
     )
 }
+
+
+// 

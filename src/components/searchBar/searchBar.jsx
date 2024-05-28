@@ -1,16 +1,8 @@
 import { useEffect, useState } from 'react';
 import Axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import Button from '@mui/material/Button';
-import ShowItems from '../pages/searchItems/searchItems';
 import SearchIcon from '@mui/icons-material/Search';
-
 import { styled, alpha } from '@mui/material/styles';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
 import { baseUrl } from '../../Url';
 
@@ -67,7 +59,7 @@ export default function SearchBar() {
         event.preventDefault();
         Axios.get(`${baseUrl}/search?q=${input}`)
             .then((response) => {
-                setproduct(response.data);
+                //setproduct(response.data);
                 navigate('/searchItems', { state: { fetchedData: response.data } });
                 // console.log(response.data);
             }).catch((e) => {

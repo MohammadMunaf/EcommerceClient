@@ -10,20 +10,27 @@ import DryCleaningIcon from '@mui/icons-material/DryCleaning';
 import SleddingIcon from '@mui/icons-material/Sledding';
 import SkateboardingIcon from '@mui/icons-material/Skateboarding';
 import SatelliteAltIcon from '@mui/icons-material/SatelliteAlt';
+import ProductList from '../pages/productList/productList';
+import { Link } from 'react-router-dom';
+import Axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+
+import { baseUrl } from '../../Url';
+
 
 
 const ImageSlider = () => {
   const [idx, setIdx] = useState(0);
   const value = [
     "",
-    "Summer Collection",
+    "Summer Collection ",
     "New Arrivals",
-    "Holy Offers"
+    "Top-rated style"
   ]
   const images = [
-    "https://images.pexels.com/photos/291762/pexels-photo-291762.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    "https://images.pexels.com/photos/974911/pexels-photo-974911.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    "https://images.pexels.com/photos/3775120/pexels-photo-3775120.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+    "https://theadultman.com/wp-content/w3-webp/uploads/2021/08/how-to-spot-high-quality-clothes-best-brands-for-men.jpgw3.webp",
+    "https://improb.com/wp-content/uploads/2017/12/The-best-waxed-canvas-jackets-for-men.jpg",
+    "https://theadultman.com/wp-content/uploads/2021/11/Taylor-Stitch-review.jpg"
   ];
   const propertes = {
     duration: 3000,
@@ -32,38 +39,53 @@ const ImageSlider = () => {
     indicators: false,
     arrows: true
   }
+  const navigate = useNavigate();
+  const handleSubmit = (val) => {
+    // event.preventDefault();
+    Axios.get(`${baseUrl}/search?q=${val}`)
+        .then((response) => {
+            //setproduct(response.data);
+            navigate('/searchItems', { state: { fetchedData: response.data } });
+            // console.log(response.data);
+        }).catch((e) => {
+            console.log(`error-->${e}`);
+        })
+        
+}
   return (
     <div className="slide-container">
       <Slide {...propertes}>
         {images.map((imageUrl, index) => (
           <div className="each-slide" key={index}>
-            <div style={{ weight: '500px', height: '735px', textAlign: 'center', background: `url(${imageUrl}) center no-repeat` }}>
+            <div style={{ weight: '500px', height: '750px', textAlign: 'center', background: `url(${imageUrl}) center no-repeat` }}>
               <img src={imageUrl} alt={`Slide ${index + 1}`} style={{ width: '100%', height: '100%' }} />
               <div className='content'>
-                <h1>{value[`${index + 1}`]}<div><Button variant="contained">Visit</Button></div></h1>
+                <h1>{value[`${index + 1}`]}<div><Button onClick={()=>handleSubmit("")}variant="contained">Visit</Button></div></h1>
               </div>
             </div>
           </div>
         ))}
       </Slide>
       <div className='img1'>
-        <div className='card' style={{ marginRight: '5px' }}>
-          <DryCleaningIcon style={{fontSize:'49px'}} />
+        <Link to={'ProductList'} style={{ textDecorationLine: 'none', color: 'black' }} className='cardLink'>
+          <div className='card' style={{ marginRight: '5px' }}>
+            <DryCleaningIcon style={{ fontSize: '49px' }} />
+          </div>
+        </Link>
+        <div onClick={()=>handleSubmit("Men")} className='card' style={{ marginRight: '5px' }}>
+          < ManIcon style={{ fontSize: '49px' }} />
         </div>
-        <div className='card' style={{ marginRight: '5px' }}>
-          < ManIcon style={{fontSize:'49px'}}/>
+        <div onClick={()=>handleSubmit("Women")} className='card' style={{ marginRight: '5px' }}>
+          <WomanIcon style={{ fontSize: '49px' }} />
         </div>
-        <div className='card' style={{ marginRight: '5px' }}>
-          <WomanIcon style={{fontSize:'49px'}}/>
+        <div onClick={()=>handleSubmit("Clild")} className='card' style={{ marginRight: '5px' }}>
+          <SkateboardingIcon style={{ fontSize: '49px' }} />
         </div>
-        <div className='card' style={{ marginRight: '5px' }}>
-          <SkateboardingIcon style={{fontSize:'49px'}}/>
+        <div onClick={()=>handleSubmit("Men")} className='card' style={{ marginRight: '5px' }}>
+          <SleddingIcon style={{ fontSize: '49px' }} />
         </div>
-        <div className='card' style={{ marginRight: '5px' }}>
-          <SleddingIcon style={{fontSize:'49px'}}/>
-        </div>
-        <div className='card' style={{ marginRight: '5px' }}>
-          <SatelliteAltIcon style={{fontSize:'49px'}}/>
+        <div onClick={()=>handleSubmit("Men")} className='card' style={{ marginRight: '5px' }}>
+          <SatelliteAltIcon style={{ fontSize: '49px' }} />
         </div>
       </div>
     </div>
@@ -71,6 +93,7 @@ const ImageSlider = () => {
 }
 
 export default ImageSlider;
+
 
 
 

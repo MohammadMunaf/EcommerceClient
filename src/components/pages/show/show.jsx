@@ -36,9 +36,9 @@ const Show = () => {
         dispatch(addToCart(product));
     }
     const images = [
-        "https://images.pexels.com/photos/291762/pexels-photo-291762.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-        "https://images.pexels.com/photos/974911/pexels-photo-974911.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-        "https://images.pexels.com/photos/3775120/pexels-photo-3775120.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+        "https://outbrands.cl/cdn/shop/products/ChaquetaShortLinedCruiserDarkTanFilsonOutbrands10.png?v=1713478865",
+        "https://content.backcountry.com/images/items/900/FSN/FSN0058/DARTN.jpg",
+        "https://i.pinimg.com/originals/d6/e0/f8/d6e0f836c9cb95d18278490e31678697.png"
     ];
     const propertes = {
         duration: 3000,
@@ -57,8 +57,8 @@ const Show = () => {
             <div className='body'>
                 {/* <h1>Show Page</h1> */}
                 <div className='item'>
-                    <div className='image' style={{ width: '50%' }}>
-                        <div className='mainImage' style={{ textAlign: 'center', height: '75%' }}>
+                    <div className='image' style={{ width: '50%'}}>
+                        <div className='mainImage' style={{ textAlign: 'center', height: '50%',width:'100%' }}>
                             <img
                                 src={images[idx]}
                                 alt="new"
@@ -70,21 +70,21 @@ const Show = () => {
                                 ))}
                             </Slide> */}
                         </div>
-                        <div className='referanceImage' style={{ height: '23%', marginTop: '5px' }}>
+                        <div className='referanceImage' style={{ height: '19%', marginTop: '5px' }}>
                             <img
-                                src="https://images.pexels.com/photos/291762/pexels-photo-291762.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                                src="https://outbrands.cl/cdn/shop/products/ChaquetaShortLinedCruiserDarkTanFilsonOutbrands10.png?v=1713478865"
                                 alt="new"
                                 style={{ height: '100%', width: '30%', margin: '2px'}}
                                 onMouseOver={() => updateIdx(0)}
                             />
                             <img
-                                src="https://images.pexels.com/photos/974911/pexels-photo-974911.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                                src="https://content.backcountry.com/images/items/900/FSN/FSN0058/DARTN.jpg"
                                 alt="new"
                                 style={{ height: '100%', width: '30%', margin: '2px' }}
                                 onMouseOver={() => updateIdx(1)}
                             />
                             <img
-                                src="https://images.pexels.com/photos/3775120/pexels-photo-3775120.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                                src="https://i.pinimg.com/originals/d6/e0/f8/d6e0f836c9cb95d18278490e31678697.png"
                                 alt="new"
                                 style={{ height: '100%', width: '30%', margin: '2px' }}
                                 onMouseOver={() => updateIdx(2)}
@@ -93,7 +93,7 @@ const Show = () => {
 
                     </div>
                     <div className='details' style={{ width: '50%' }}>
-                        <div className='heading' style={{ fontSize: '25px' }}>
+                        <div className='heading' style={{ fontSize: '25px',color:'rgb(29, 58, 81)' }}>
                             <h1 style={{ fontFamily: 'inherit' }}>{product.name}</h1>
                             <h1>Mens clothing</h1>
                             <div className='ratting' style={{}}>
@@ -111,7 +111,7 @@ const Show = () => {
                             <p style={{ fontSize: '20px', color: 'rgb(73, 70, 70)' }}>Men Green & Navy Blue Checked Casual Sustainable Shirt</p>
                         </div>
                         <div className='price' style={{ fontSize: '30px', marginTop: '30px' }}>
-                            <h3 style={{ margin: '0' }}><CurrencyRupeeIcon style={{ fontSize: '15px' }} />{product.price}</h3>
+                            <h3 style={{ margin: '0' ,color:'rgb(29, 58, 81)' }}><CurrencyRupeeIcon style={{ fontSize: '15px',color:'rgb(29, 58, 81)' }} />{product.price}</h3>
                         </div>
                         <span className='quantity' style={{ marginTop: '45px' }}>
                             <p style={{ paddingRight: '15px', fontSize: '20px', }}>Quantity</p><Quantity />

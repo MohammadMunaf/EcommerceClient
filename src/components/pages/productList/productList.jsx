@@ -1,11 +1,8 @@
 import { useEffect, useState } from 'react';
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import { Link, Navigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './productList.css'
 import Axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -18,17 +15,32 @@ import Checkbox from '@mui/material/Checkbox';
 import { baseUrl } from '../../../Url';
 import Footer from '../../footer/footer';
 import Navbar from '../../navbar/navbar';
+import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
+import { Radio } from '@mui/material';
+import StarIcon from '@mui/icons-material/Star';
 export default function ProductList() {
     const navigate = useNavigate();
-    const [checked, setChecked] = useState("false");
+    const [buttonClick, setButtonClick] = useState({
+        click: '0',
+        button: "",
+    });
+    const [mp, setmp] = useState(new Map([
+        ["Men", { BackgroundColor: 'white', Color: 'rgb(82, 81, 81)' }],
+        ["Women", { BackgroundColor: 'white', Color: 'rgb(82, 81, 81)' }],
+        ["Children", { BackgroundColor: 'white', Color: 'rgb(82, 81, 81)' }],
+        ["Shirt", { BackgroundColor: 'white', Color: 'rgb(82, 81, 81)' }],
+        ["Tshirt", { BackgroundColor: 'white', Color: 'rgb(82, 81, 81)' }],
+    ]));
+
     const [allproduct, setallproduct] = useState([]);
     const [alldata, setallData] = useState([]);
+    const [Arrangedata, setArrangeData] = useState("");
     const fetchData = (value) => {
         Axios.get(`${baseUrl}/products?q=${value}`)
             .then((response) => {
                 setallproduct(response.data);
                 setallData(response.data);
-                console.log(response.data);
+                //console.log(response.data);
             })
             .catch((e) => {
                 console.error(`error-->${e}`);
@@ -48,39 +60,76 @@ export default function ProductList() {
             })
     }
     const updateButtonValue = (category) => {
-        fetchData(category);
-        setChecked("true");
+        let prevButton = buttonClick.button;
+        if (prevButton === category) {
+            setmp(
+                mp.set(category, { BackgroundColor: 'white', Color: 'rgb(82, 81, 81)' })
+            )
+            setButtonClick(
+                { click: '0', button: "" }
+            )
+            fetchData("All");
+        } else {
+            fetchData(category);
+            if (buttonClick.click === '0') {
+                setmp(
+                    mp.set(category, { BackgroundColor: 'rgb(29, 58, 81)', Color: 'white' })
+                )
+                setButtonClick(
+                    { click: '1', button: category }
+                )
+            } else {
+                setmp(
+                    mp.set(category, { BackgroundColor: 'rgb(29, 58, 81)', Color: 'white' })
+                )
+                setmp(
+                    mp.set(prevButton, { BackgroundColor: 'white', Color: 'rgb(82, 81, 81)' })
+                )
+                setButtonClick(
+                    { click: '1', button: category }
+                )
+            }
+        }
+
     }
     const arrangeData = (val) => {
         let product = [];
-        switch (val) {
-            case "a":
-                //less then 500  .
-                product = alldata.filter((p) => p.price < 500);
-                // console.log(product);
-                break;
-            case "b":
-                //499-999
-                product = alldata.filter((p) => p.price > 500 && p.price < 1000);
-                // console.log(product);
-                break;
-            case "c":
-                //1000-1599
-                product = alldata.filter((p) => p.price > 1000 && p.price < 1599);
-                // console.log(product);
-                break;
-            case "d":
-                //1500-1999 
-                product = alldata.filter((p) => p.price > 1500 && p.price < 1999);
-                // console.log(product);
-                break;
-            case "e":
-                //above 2000   
-                product = alldata.filter((p) => p.price > 2000);
-                // console.log(product);
-                break;
-             default:
-                break;   
+        if (Arrangedata === val) {
+            setArrangeData("");
+            product = alldata;
+        }
+        else {
+            setArrangeData(val);
+
+            switch (val) {
+                case "a":
+                    //less then 500  .
+                    product = alldata.filter((p) => p.price < 500);
+                    // console.log(product);
+                    break;
+                case "b":
+                    //499-999
+                    product = alldata.filter((p) => p.price > 500 && p.price < 1000);
+                    // console.log(product);
+                    break;
+                case "c":
+                    //1000-1599
+                    product = alldata.filter((p) => p.price > 1000 && p.price < 1599);
+                    // console.log(product);
+                    break;
+                case "d":
+                    //1500-1999 
+                    product = alldata.filter((p) => p.price > 1500 && p.price < 1999);
+                    // console.log(product);
+                    break;
+                case "e":
+                    //above 2000   
+                    product = alldata.filter((p) => p.price > 2000);
+                    // console.log(product);
+                    break;
+                default:
+                    break;
+            }
         }
         setallproduct(product);
     }
@@ -89,76 +138,117 @@ export default function ProductList() {
         product.sort((a, b) => a.price - b.price);
         setallproduct(product);
     }
-    const gotHome=()=>{
+    const gotHome = () => {
         navigate('/');
     }
     return (
         <div>
-            <Navbar/>
-        <div className='collections'>
-            <div className='sideBar'>
-                <div className='catogory1' style={{ textAlign: "left" }}>
-                    <h3>Catogeries</h3>
-                    <button onClick={() => updateButtonValue("Men")} ><ManIcon style={{ marginBottom: '-5px', width: '2em' }} />Men</button>
-                    <button onClick={() => updateButtonValue("Women")} ><Woman2Icon style={{ marginBottom: '-5px', width: '2em' }} />Women</button>
-                    <button onClick={() => updateButtonValue("Children")} >< EscalatorWarningIcon style={{ marginBottom: '-5px', width: '2em' }} />Children</button>
-                    <button onClick={() => updateButtonValue("Shirt")} ><CandlestickChartIcon style={{ marginBottom: '-5px', width: '2em' }} />Shirt</button>
-                    <button onClick={() => updateButtonValue("Tshirt")} ><BubbleChartIcon style={{ marginBottom: '-5px', width: '2em' }} />Tshirt</button>
-                </div>
-                <div className='catogory2' style={{ marginTop: '20px', textAlign: "left" }}>
-                    <h3>Filter By Price</h3>
-                    <button onClick={() => arrangeData("a")} ><label><Checkbox />less then 500</label></button>
-                    <button onClick={() => arrangeData("b")} ><label><Checkbox />499-999</label></button>
-                    <button onClick={() => arrangeData("c")} ><label><Checkbox />1000-1599</label></button>
-                    <button onClick={() => arrangeData("d")} ><label><Checkbox />1500-1999</label></button>
-                    <button onClick={() => arrangeData("e")} ><label><Checkbox />above 2000</label></button>
-                </div>
-                <div className='catogory2' style={{ marginTop: '20px', textAlign: "left" }}>
-                    <h3>Filter By Ratting</h3>
-                    <button onClick={() => arrangeData("a")} ><label><Checkbox />2</label></button>
-                    <button onClick={() => arrangeData("b")} ><label><Checkbox />3</label></button>
-                    <button onClick={() => arrangeData("c")} ><label><Checkbox />4</label></button>
-                    <button onClick={() => arrangeData("d")} ><label><Checkbox />5</label></button>
+            <Navbar />
+            <div className='collections'>
+                <div className='collectionContent'>
+                    <div className='sideBar'>
+                        <div className='catogory1' style={{ textAlign: "left" }}>
+                            <h2 style={{ fontSize: '30px' }}>Catogeries</h2>
+                            <button
+                                onClick={() => updateButtonValue("Men")}
+                                style={{
+                                    backgroundColor: mp.get("Men").BackgroundColor,
+                                    color: mp.get("Men").Color
+                                }}
+                            >
+                                <ManIcon style={{ marginBottom: '-5px', width: '2em' }} />
+                                Men
+                            </button>
+                            <button
+                                onClick={() => updateButtonValue("Women")}
+                                style={{
+                                    backgroundColor: mp.get("Women").BackgroundColor,
+                                    color: mp.get("Women").Color
+                                }}
+                            >
+                                <Woman2Icon style={{ marginBottom: '-5px', width: '2em' }} />
+                                Women
+                            </button>
+                            <button
+                                onClick={() => updateButtonValue("Children")}
+                                style={{ backgroundColor: mp.get("Children").BackgroundColor, color: mp.get("Children").Color }}
+                            >
+                                < EscalatorWarningIcon style={{ marginBottom: '-5px', width: '2em' }} />
+                                Children
+                            </button>
+                            <button
+                                onClick={() => updateButtonValue("Shirt")}
+                                style={{ backgroundColor: mp.get("Shirt").BackgroundColor, color: mp.get("Shirt").Color }}
+                            >
+                                <CandlestickChartIcon style={{ marginBottom: '-5px', width: '2em' }} />
+                                Shirt
+                            </button>
+                            <button
+                                onClick={() => updateButtonValue("Tshirt")}
+                                style={{ backgroundColor: mp.get("Tshirt").BackgroundColor, color: mp.get("Tshirt").Color }}>
+                                <BubbleChartIcon style={{ marginBottom: '-5px', width: '2em' }} />
+                                Tshirt
+                            </button>
+                        </div>
+                        <div className='catogory2' style={{ marginTop: '20px', textAlign: "left" }}>
+                            <h2 style={{ fontSize: '26px' }}>Filter By Price</h2>
+                            <button onClick={() => arrangeData("a")} id='500'><label><Checkbox for='500' checked={Arrangedata === "a"} />less then 500</label></button>
+                            <button onClick={() => arrangeData("b")} id='999'><label><Checkbox for='999' checked={Arrangedata === "b"} />499-999</label></button>
+                            <button onClick={() => arrangeData("c")} id='1599'><label><Checkbox for='1599' checked={Arrangedata === "c"} />1000-1599</label></button>
+                            <button onClick={() => arrangeData("d")} id='1999'><label><Checkbox for='1999' checked={Arrangedata === "d"} />1500-1999</label></button>
+                            <button onClick={() => arrangeData("e")} id='2000'><label><Checkbox for='2000' checked={Arrangedata === "e"} />above 2000</label></button>
+                        </div>
+                        <div className='catogory2' style={{ marginTop: '20px', textAlign: "left" }}>
+                            <h2 style={{ fontSize: '26px' }}>Filter By Ratting</h2>
+                            <button onClick={() => arrangeData("2")} id='2'><label><Checkbox for='2' checked={Arrangedata === "2"} />2 <StarIcon style={{ color: 'orange' ,marginBottom:'-6px'}} />
+                                <StarIcon style={{ color: 'orange' ,marginBottom:'-5px'}} /></label></button>
+                            <button onClick={() => arrangeData("3")} id='3'><label><Checkbox for='3' checked={Arrangedata === "3"} />3  <span><StarIcon style={{ color: 'orange',marginBottom:'-6px' }} />
+                                <StarIcon style={{ color: 'orange',marginBottom:'-5px' }} />
+                                <StarIcon style={{ color: 'orange',marginBottom:'-6px' }} /></span></label></button>
+                            <button onClick={() => arrangeData("4")} id='4'><label><Checkbox for='4' checked={Arrangedata === "4"} />4  <span><StarIcon style={{ color: 'orange' ,marginBottom:'-6px'}} />
+                                <StarIcon style={{ color: 'orange',marginBottom:'-6px' }} />
+                                <StarIcon style={{ color: 'orange',marginBottom:'-6px' }} />
+                                <StarIcon style={{ color: 'orange',marginBottom:'-6px' }} /></span></label></button>
+                            <button onClick={() => arrangeData("5")} id='5'><label><Checkbox for='5' checked={Arrangedata === "5"} />5 <span><StarIcon style={{ color: 'orange' ,marginBottom:'-6px'}} />
+                                <StarIcon style={{ color: 'orange' ,marginBottom:'-6px'}} />
+                                <StarIcon style={{ color: 'orange',marginBottom:'-6px' }} />
+                                <StarIcon style={{ color: 'orange',marginBottom:'-6px' }} />
+                                <StarIcon style={{ color: 'orange' ,marginBottom:'-6px'}} /></span></label></button>
+                        </div>
+                    </div>
+                    <div className='productList'>
+                        <div>
+                            <h2 style={{ fontSize: '26px' }}>Products List</h2>
+                            <Button onClick={() => changeOrder("price")}>sort price</Button>
+                            <Button onClick={() => changeOrder("date")}>recent</Button>
+                            <Button onClick={() => gotHome()}>Home</Button>
+                        </div>
+                        {Array.isArray(allproduct) && allproduct.map(product => (
+                            <Card sx={{ width: 290, height: 300, boxShadow: 'none' }} className='product' key={product._id}>
+                                <Link to={`/show/${product._id}`} style={{ textDecorationLine: 'none' }}>
+                                    <CardMedia
+                                        component="img"
+                                        alt="green iguana"
+                                        height="230"
+                                        image="https://roe.filson.eu/cdn/shop/products/FMCPS0012W0200_317_FLS_13_1200x.jpg?v=1693900530"
+                                    />
+                                    <div className="newArrivalProductDetails" style={{ color: 'GrayText', textAlign: 'center' }}>
+                                        <span>
+                                            <p style={{ margin: '3px', maxHeight: '18.5px' }}>{product.name}</p>
+                                            <h2 style={{ margin: '3px', color: 'rgb(29, 58, 81)' }}><CurrencyRupeeIcon style={{ fontSize: '15px' }} />{product.price}</h2>
+                                        </span>
+                                    </div>
+                                </Link>
+                                {/* <Button onClick={() => handleDelete(product._id)} style={{backgroundColor:'red',height:'15px',color:'white'}}>Delete</Button> */}
+                            </Card>
+                        ))}
+                    </div>
                 </div>
             </div>
-            <div className='productList'>
-                <div>
-                    <h2 >Products List</h2>
-                    <Button onClick={() => changeOrder("price")}>sort price</Button>
-                    <Button onClick={() => changeOrder("date")}>recent</Button>
-                    <Button onClick={()=>gotHome()}>Home</Button>
-                </div>
-                {allproduct.map((product) => (
-                    <Card sx={{ maxWidth: 345 }} className='product' key={product._id}>
-                        <CardMedia
-                            component="img"
-                            alt="green iguana"
-                            height="140"
-                            image="https://images.pexels.com/photos/845434/pexels-photo-845434.jpeg?auto=compress&cs=tinysrgb&w=800"
-                        />
-                        <CardContent>
-                            <Typography gutterBottom variant="h5" component="div">
-                                {product.name}
-                            </Typography>
-                            {/* <Typography variant="body2" color="text.secondary">
-                                    {product.description}
-                                </Typography> */}
-                            <Typography variant="body2" color="text.secondary">
-                                {product.price}
-                            </Typography>
-                            <Typography variant="body2" color="text.secondary">
-                                {product.category}
-                            </Typography>
-                        </CardContent>
-                        <CardActions>
-                            <Button size="small"><Link to={`/show/${product._id}`}>View</Link></Button>
-                            <Button onClick={() => handleDelete(product._id)}>Delete</Button>
-                        </CardActions>
-                    </Card>
-                ))}
-            </div>
-        </div>
-        <Footer/>
+            <Footer />
         </div>
     )
 }
+
+
+
