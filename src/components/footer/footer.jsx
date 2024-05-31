@@ -8,8 +8,8 @@ export default function Footer() {
             <div className='copyRight'>
                 <CopyrightIcon />
                 <h5>Developed And Maintained By Mohammad Munaf</h5>
-                <Button><Link to={'upload'}>addItem</Link></Button>
-                <Button><Link to={'ProductList'}>ProductList</Link></Button>
+                {/* <Button><Link to={'upload'}>addItem</Link></Button>
+                <Button><Link to={'ProductList'}>ProductList</Link></Button> */}
             </div>
         </div>
     )
