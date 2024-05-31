@@ -14,6 +14,7 @@ import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import SkipNextIcon from '@mui/icons-material/SkipNext';
 import { Button } from '@mui/material';
 import './searchItems.css';
+import StarIcon from '@mui/icons-material/Star';
 import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
 import { useEffect } from 'react';
 export default function ShowItems() {
@@ -26,27 +27,34 @@ export default function ShowItems() {
             <div className='mainSearchContent'>
                 {Array.isArray(fetchedData) && fetchedData.map((product) => (
 
-                    <div key={product._id} style={{ width: '50%', marginTop: '15px' }}>
+                    <div key={product._id} style={{ width: '70%', marginTop: '20px' }}>
                        
                         <Card sx={{ display: 'flex' }}>
                         <Link to={`/show/${product._id}`}>  
                             <CardMedia
                                 component="img"
                                 sx={{ width: 252 }}
-                                image="https://images.pexels.com/photos/291762/pexels-photo-291762.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                                image={product.images[0].url}
                                 alt=""
                             />
                             </Link>
                             <Box sx={{ display: 'flex', flexDirection: 'column' }}>
                                 <CardContent sx={{ flex: '1 0 auto' }}>
-                                    <Typography component="div" variant="h4" sx={{ textDecoration: 'none'}}>
+                                    <Typography component="div" variant="h4" sx={{ textDecoration: 'none',color:'rgb(29, 58, 81)'}}>
                                     {product.name}
                                     </Typography>
-                                    <Typography variant="subtitle1" color="text.secondary" component="div" sx={{ fontSize: '25px' }}>
+                                    <Typography variant="subtitle1" color="text.secondary" component="div" sx={{ fontSize: '20px',marginBottom:'5px' }}>
                                         {product.description}
                                     </Typography>
+                                    <div className='ratting' style={{}}>
+                                <span><StarIcon style={{ color: 'orange' }} />
+                                    <StarIcon style={{ color: 'orange' }} />
+                                    <StarIcon style={{ color: 'orange' }} />
+                                    <StarIcon style={{ color: 'orange' }} />
+                                    <StarIcon style={{ color: 'orange' }} /></span>
+                            </div>
                                     <Typography variant="subtitle1" color="rgb(29, 58, 81)" component="div" sx={{ fontSize: '25px' }}>
-                                        <CurrencyRupeeIcon style={{ fontSize: '14px', color: 'rgb(29, 58, 81)' }} />{product.price}
+                                        <CurrencyRupeeIcon variant="h3" sx={{ fontSize: '14px', color: 'rgb(29, 58, 81)'}} />{product.price}
                                     </Typography>
                                 </CardContent>
                             </Box>
