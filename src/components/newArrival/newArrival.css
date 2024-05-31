@@ -14,12 +14,12 @@
     padding-bottom: 100px;
 }
 .newArrivalProduct{
-    width: 90%;
+    width:82%;
     height:85%;
 }
 .products .product{
     border-radius:0;
-    border: 0.2px solid rgb(189, 197, 202);
+    /* border: 0.2px solid rgb(189, 197, 202); */
 }
 .newArrivalProductDetails{
     display: flex;

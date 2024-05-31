@@ -57,7 +57,7 @@ const ImageSlider = () => {
       <Slide {...propertes}>
         {images.map((imageUrl, index) => (
           <div className="each-slide" key={index}>
-            <div style={{ weight: '500px', height: '750px', textAlign: 'center', background: `url(${imageUrl}) center no-repeat` }}>
+            <div style={{ weight: '500px', height: '650px', textAlign: 'center', background: `url(${imageUrl}) center no-repeat` }}>
               <img src={imageUrl} alt={`Slide ${index + 1}`} style={{ width: '100%', height: '100%' }} />
               <div className='content'>
                 <h1>{value[`${index + 1}`]}<div><Button onClick={()=>handleSubmit("")}variant="contained">Visit</Button></div></h1>

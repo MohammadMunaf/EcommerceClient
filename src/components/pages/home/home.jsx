@@ -1,15 +1,16 @@
 import './home.css'
-import Button from '@mui/material/Button';
 import Footer from '../../footer/footer';
 import Navbar from '../../navbar/navbar';
 import { Link } from 'react-router-dom';
 import ImageSlider from '../../imageSlider/imageSlider';
-import ProductList from '../productList/productList';
 import NewArrival from '../../newArrival/newArrival';
 import Delivery from '../../delivery/delivery';
 import Featured from '../../featured/featured';
+import { useEffect } from 'react';
 export default function Home() {
-
+    useEffect(() => {
+        window.scrollTo(0, 0);
+      }, []);
     return (
         <div>
             <Navbar />

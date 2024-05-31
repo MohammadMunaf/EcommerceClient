@@ -48,6 +48,7 @@ export default function ProductList() {
     }
     useEffect(() => {
         fetchData("All");
+        window.scrollTo(0, 0);
     }, []);
 
     const handleDelete = (id) => {
@@ -230,11 +231,11 @@ export default function ProductList() {
                                         component="img"
                                         alt="green iguana"
                                         height="230"
-                                        image="https://roe.filson.eu/cdn/shop/products/FMCPS0012W0200_317_FLS_13_1200x.jpg?v=1693900530"
+                                        image={product.images[0].url}
                                     />
                                     <div className="newArrivalProductDetails" style={{ color: 'GrayText', textAlign: 'center' }}>
                                         <span>
-                                            <p style={{ margin: '3px', maxHeight: '18.5px' }}>{product.name}</p>
+                                            <p style={{ margin: '3px', maxHeight: '18.5px' ,marginTop:'10px'}}>{product.name}</p>
                                             <h2 style={{ margin: '3px', color: 'rgb(29, 58, 81)' }}><CurrencyRupeeIcon style={{ fontSize: '15px' }} />{product.price}</h2>
                                         </span>
                                     </div>

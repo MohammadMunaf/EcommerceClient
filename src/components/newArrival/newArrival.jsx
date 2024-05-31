@@ -27,7 +27,7 @@ export default function NewArrival() {
     const [allproduct, setallproduct] = useState([]);
     const [today, setToday] = useState("");
     const fetchData = (value) => {
-        Axios.get(`${baseUrl}/products?q=${value}`,{params:{_limit:10}})
+        Axios.get(`${baseUrl}/products?q=${value}&l=${8}`)
             .then((response) => {
                 //console.log(response.data.filter((p)=>p.date==='2024-03-26T09:56:54.157Z'));
                 setallproduct(response.data.filter((p) => p.date >= '2024-04-01'));
@@ -61,17 +61,18 @@ export default function NewArrival() {
             <div className='products'>
                 <div className='newArrivalProduct'>
                     {Array.isArray(allproduct) && allproduct.map(product => (
-                        <Card sx={{ width: 290, height: 290, boxShadow: 'none' }} className='product' key={product._id}>
+                        <Card sx={{ width: 290, height: 295, boxShadow: 'none' }} className='product' key={product._id}>
                             <Link to={`/show/${product._id}`} style={{textDecorationLine:'none'}}>
                             <CardMedia
                                 component="img"
                                 alt="green iguana"
                                 height="230"
-                                image="https://roe.filson.eu/cdn/shop/products/FMCPS0012W0200_317_FLS_13_1200x.jpg?v=1693900530"
+                                image={product.images[0].url}
+
                             />
                             <div className="newArrivalProductDetails"style={{color:'GrayText',textAlign:'center'}}>
                                     <span>
-                                    <p style={{margin:'3px',maxHeight:'18.5px'}}>{product.name}</p>
+                                    <p style={{margin:'3px',maxHeight:'18.5px',marginTop:'15px'}}>{product.name}</p>
                                     <h2 style={{margin:'3px',color:'rgb(29, 58, 81)'}}><CurrencyRupeeIcon style={{ fontSize: '15px' }} />{product.price}</h2>
                                     </span>
                             </div>

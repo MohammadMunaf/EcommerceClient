@@ -19,12 +19,14 @@ import Quantity from '../../quantity/quantity';
 const Show = () => {
     const { userId } = useParams();
     const [product, setProduct] = useState([]);
+    const [imageArray,setImageArray]=useState([])
     const dispatch = useDispatch();
     useEffect(() => {
         const fetchProduct = async () => {
             try {
                 const response = await Axios.get(`${baseUrl}/show/${userId}`);
                 setProduct(response.data);
+                setImageArray(response.data.images.map(f=>(f.url)));
             } catch (error) {
                 console.error(`Error fetching product: ${error}`);
             }
@@ -35,11 +37,10 @@ const Show = () => {
     const handleCart = (product) => {
         dispatch(addToCart(product));
     }
-    const images = [
-        "https://outbrands.cl/cdn/shop/products/ChaquetaShortLinedCruiserDarkTanFilsonOutbrands10.png?v=1713478865",
-        "https://content.backcountry.com/images/items/900/FSN/FSN0058/DARTN.jpg",
-        "https://i.pinimg.com/originals/d6/e0/f8/d6e0f836c9cb95d18278490e31678697.png"
-    ];
+    for(let img of imageArray){
+        console.log(img);
+    }
+    //console.log(imageArray[0].url);
     const propertes = {
         duration: 3000,
         transitionDuration: 800,
@@ -59,8 +60,9 @@ const Show = () => {
                 <div className='item'>
                     <div className='image' style={{ width: '50%'}}>
                         <div className='mainImage' style={{ textAlign: 'center', height: '50%',width:'100%' }}>
+                            
                             <img
-                                src={images[idx]}
+                                src={imageArray[idx]}
                                 alt="new"
                                 style={{ width: '100%', height: '100%',transition:'' }}
                             />
@@ -72,19 +74,19 @@ const Show = () => {
                         </div>
                         <div className='referanceImage' style={{ height: '19%', marginTop: '5px' }}>
                             <img
-                                src="https://outbrands.cl/cdn/shop/products/ChaquetaShortLinedCruiserDarkTanFilsonOutbrands10.png?v=1713478865"
+                                src={imageArray[0]}
                                 alt="new"
                                 style={{ height: '100%', width: '30%', margin: '2px'}}
                                 onMouseOver={() => updateIdx(0)}
                             />
                             <img
-                                src="https://content.backcountry.com/images/items/900/FSN/FSN0058/DARTN.jpg"
+                                src={imageArray[1]}
                                 alt="new"
                                 style={{ height: '100%', width: '30%', margin: '2px' }}
                                 onMouseOver={() => updateIdx(1)}
                             />
                             <img
-                                src="https://i.pinimg.com/originals/d6/e0/f8/d6e0f836c9cb95d18278490e31678697.png"
+                                src={imageArray[2]}
                                 alt="new"
                                 style={{ height: '100%', width: '30%', margin: '2px' }}
                                 onMouseOver={() => updateIdx(2)}
@@ -108,7 +110,7 @@ const Show = () => {
                         </div>
                         <div className='description' style={{ marginTop: '10px' }}>
                             <p style={{ margin: '0', fontSize: '20px', color: 'rgb(73, 70, 70)' }}>{product.description}</p>
-                            <p style={{ fontSize: '20px', color: 'rgb(73, 70, 70)' }}>Men Green & Navy Blue Checked Casual Sustainable Shirt</p>
+                            {/* <p style={{ fontSize: '20px', color: 'rgb(73, 70, 70)' }}>Men Green & Navy Blue Checked Casual Sustainable Shirt</p> */}
                         </div>
                         <div className='price' style={{ fontSize: '30px', marginTop: '30px' }}>
                             <h3 style={{ margin: '0' ,color:'rgb(29, 58, 81)' }}><CurrencyRupeeIcon style={{ fontSize: '15px',color:'rgb(29, 58, 81)' }} />{product.price}</h3>
