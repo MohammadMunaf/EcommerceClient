@@ -56,7 +56,7 @@ export default function NewArrival() {
         <div className='newArrivalsCollections'>
             <div className='newArrival' style={{ width: '100%', height: '140px', backgroundColor: 'white', marginBottom: '20px', marginTop: '20px'}}>
                 <h1 style={{paddingTop:'34px',fontSize:'55px',marginLeft:'35px'}}>New Arrival</h1>
-                <p><Link to={'ProductList'} style={{textDecorationLine:'none',color:'rgb(29, 58, 81)',marginRight:'30px',fontSize:'20px'}}>Visit All</Link></p>
+                {/* <p><Link to={'ProductList'} style={{textDecorationLine:'none',color:'rgb(29, 58, 81)',marginRight:'30px',fontSize:'20px'}}>Visit All</Link></p> */}
             </div>
             <div className='products'>
                 <div className='newArrivalProduct'>
@@ -66,14 +66,15 @@ export default function NewArrival() {
                             <CardMedia
                                 component="img"
                                 alt="green iguana"
-                                height="230"
-                                image={product.images[0].url}
+                                width="100"
+                                height="220"
+                                image={product.images[2].url}
 
                             />
                             <div className="newArrivalProductDetails"style={{color:'GrayText',textAlign:'center'}}>
                                     <span>
                                     <p style={{margin:'3px',maxHeight:'18.5px',marginTop:'15px'}}>{product.name}</p>
-                                    <h2 style={{margin:'3px',color:'rgb(29, 58, 81)'}}><CurrencyRupeeIcon style={{ fontSize: '15px' }} />{product.price}</h2>
+                                    {/* <h2 style={{margin:'3px',color:'rgb(29, 58, 81)'}}><CurrencyRupeeIcon style={{ fontSize: '15px' }} />{product.price}</h2> */}
                                     </span>
                             </div>
                             </Link>

@@ -225,13 +225,13 @@ export default function ProductList() {
                             <Button onClick={() => gotHome()}>Home</Button>
                         </div>
                         {Array.isArray(allproduct) && allproduct.map(product => (
-                            <Card sx={{ width: 290, height: 300, boxShadow: 'none' }} className='product' key={product._id}>
+                            <Card sx={{ width: 250, height: 340, boxShadow: 'none' ,marginRight:'49px'}} className='product' key={product._id}>
                                 <Link to={`/show/${product._id}`} style={{ textDecorationLine: 'none' }}>
                                     <CardMedia
                                         component="img"
                                         alt="green iguana"
-                                        height="230"
-                                        image={product.images[0].url}
+                                        height="220"
+                                        image={product.images[2].url}
                                     />
                                     <div className="newArrivalProductDetails" style={{ color: 'GrayText', textAlign: 'center' }}>
                                         <span>
@@ -240,7 +240,7 @@ export default function ProductList() {
                                         </span>
                                     </div>
                                 </Link>
-                                {/* <Button onClick={() => handleDelete(product._id)} style={{backgroundColor:'red',height:'15px',color:'white'}}>Delete</Button> */}
+                                <Button onClick={() => handleDelete(product._id)} style={{backgroundColor:'red',height:'15px',color:'white'}}>Delete</Button>
                             </Card>
                         ))}
                     </div>

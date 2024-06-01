@@ -9,16 +9,18 @@
     width:100%;
     height: 720px;
     display: flex;
-    justify-content: center;
+    /* justify-content: center; */
     align-items: center;
     padding-bottom: 100px;
 }
 .newArrivalProduct{
-    width:85%;
+    width:100%;
     height:85%;
 }
 .products .product{
     border-radius:0;
+    margin-left: 70px;
+    width:220px;
     /* border: 0.2px solid rgb(189, 197, 202); */
 }
 .newArrivalProductDetails{

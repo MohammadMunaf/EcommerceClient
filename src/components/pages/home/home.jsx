@@ -22,7 +22,7 @@ export default function Home() {
                         <div className='header'><h3>Summer</h3><h1>Collections</h1></div>
                     </div>
                     <div className='row2' style={{ height: '50%', marginTop: '10px' }}>
-                        <Link to={'ProductList'}><img src="https://cdn.shopify.com/s/files/1/0407/6037/7506/products/maritime1.jpg" alt="" style={{ height: '98%',width:'100%' }} /></Link>
+                        <Link to={'ProductList'}><img src="https://cdn.shopify.com/s/files/1/0003/2725/4068/products/mens_murphy_sweater_shirt_bridgewater_buffalo_jackson_800x.jpg" alt="" style={{ height: '98%',width:'100%' }} /></Link>
                         <div className='header'><h3>Casual</h3><h1>Collections</h1></div>
                     </div>
                 </div>

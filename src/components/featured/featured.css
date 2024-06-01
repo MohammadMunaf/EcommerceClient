@@ -27,14 +27,14 @@
 }
 .featuredProducts .featuredProductimg2{
     position: relative;
-    border: 5px yellow solid;
+    border: 5px rgb(29, 58, 81) solid;
     padding:5px 5px 1px 5px;
     margin-left: -17%;
     margin-top: 309px;
 }
 .featuredProducts .featuredProductimg3{
     position: relative;
-    border: 5px white solid;
+    border: 5px rgb(29, 58, 81) solid;
     padding:5px 5px 1px 5px;
     margin-left: -26.7%;
     margin-top: -274px;
@@ -42,4 +42,9 @@
 
 .imageText h1{
     color: rgb(240, 247, 255);
+}
+.imageTextButton:hover{
+    background-color: rgb(29, 58, 81);
+    color:white;
+    transition: background-color 0.8s ease, color 0.8s ease; 
 }
