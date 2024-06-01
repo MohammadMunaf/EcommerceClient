@@ -32,9 +32,10 @@ export default function Navbar() {
     }
     return (
         <div className='navbar'>
-            <Button><Link to='/'><RoofingRoundedIcon /></Link></Button>
+            <h4 style={{marginLeft:"35px",letterSpacing:'10px',color:'aliceblue'}}>Stylish Men</h4>
             <SearchBar />
             <div>
+            <Button><Link to='/'><RoofingRoundedIcon /></Link></Button>
                 <IconButton onClick={() => handleCart()} aria-label="cart">
                     <StyledBadge badgeContent={products.length} color="secondary">
                         <ShoppingCartRoundedIcon />
@@ -45,3 +46,5 @@ export default function Navbar() {
         </div>
     )
 }
+
+//Stylish Men: E-Commerce Platform Using MERN

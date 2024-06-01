@@ -30,7 +30,7 @@ export default function Home() {
                     <Link to={'ProductList'}><img src="https://i.ebayimg.com/images/g/v84AAOSwCGFhv~ty/s-l1600.jpg" alt="" style={{ height: '100%',width:'100%' }} /></Link>
                     <div className='header2'><h3>Big Vibe</h3><h1>Collections</h1>
                     </div> 
-                    <div className='header3'>  "Stay comfortable, stay stylish, stay you"</div>
+                    <div className='header3'>  Stay comfortable, stay stylish, stay you</div>
                 </div>
             </div>
             <Featured />
