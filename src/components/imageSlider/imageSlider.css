@@ -37,7 +37,16 @@
        justify-content: left;
        font-size:xx-large;
 }
-.content Button{
+/* .content Button{
     width: 150px;
     background-color: rgb(29, 58, 81);
+} */
+.slideContainerButton{
+    background-color: rgb(29, 58, 81);
+    color:white;
+}
+.slideContainerButton:hover{
+    background-color: aliceblue;
+    color:black;
+    transition: background-color 0.8s ease, color 0.8s ease; 
 }
