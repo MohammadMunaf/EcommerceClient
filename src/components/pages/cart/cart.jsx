@@ -17,8 +17,10 @@ export default function Cart() {
           calculatedTotal += product.price;
         }
         setTotal(calculatedTotal);
-      }, [products]);
-
+    }, [products]);
+    for(let p of products){
+        console.log(p.image);
+    }
     const dispatch = useDispatch();
     const handleRemove = (product) => {
         dispatch(removeToCart(product))
@@ -34,7 +36,7 @@ export default function Cart() {
             {Array.isArray(products) && products.map(product => (
                 <div key={product.id} className="cartbox" style={{ height: '155px',width:'100%' }}>
                     <div className="imge" style={{ width: '13%' }}>
-                        <img src="https://outbrands.cl/cdn/shop/products/ChaquetaShortLinedCruiserDarkTanFilsonOutbrands10.png?v=1713478865" alt="" height="125em" style={{ marginTop: '4px' }} />
+                        <img src={product.image} alt="" height="125em" style={{ marginTop: '4px' }} />
                     </div>
                     <div className="itemDetails" style={{ width: '20%' }}>
                         <h1 style={{ fontFamily: 'inherit' ,color:'rgb(29, 58, 81)'}}>{product.name}</h1>

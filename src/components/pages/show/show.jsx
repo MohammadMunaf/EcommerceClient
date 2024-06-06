@@ -7,14 +7,10 @@ import { useDispatch } from 'react-redux';
 import { baseUrl } from '../../../Url';
 import './show.css';
 import { Button } from '@mui/material';
-
 import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
 import StarIcon from '@mui/icons-material/Star';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import Quantity from '../../quantity/quantity';
-
-
-
 
 const Show = () => {
     const { userId } = useParams();
@@ -37,9 +33,9 @@ const Show = () => {
     const handleCart = (product) => {
         dispatch(addToCart(product));
     }
-    for(let img of imageArray){
-        console.log(img);
-    }
+    // for(let img of imageArray){
+    //     console.log(img);
+    // }
     //console.log(imageArray[0].url);
     const propertes = {
         duration: 3000,

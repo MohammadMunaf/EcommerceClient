@@ -4,7 +4,7 @@ export const addToCart = (product) => {
             type: "CART_ADD_ITEM",
             payload: {
                 name: product.name,
-                image: product.image,
+                image: product.images[2].url,
                 price: product.price,
                 id: product._id
             }
@@ -19,7 +19,7 @@ export const removeToCart = (product) => {
             type: "CART_REMOVE_ITEM",
             payload: {
                 name: product.name,
-                image: product.image,
+                image: product.images[2].url,
                 price: product.price,
                 id: product.id
             }
