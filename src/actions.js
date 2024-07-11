@@ -19,7 +19,7 @@ export const removeToCart = (product) => {
             type: "CART_REMOVE_ITEM",
             payload: {
                 name: product.name,
-                image: product.images[2].url,
+                image: product.images,
                 price: product.price,
                 id: product.id
             }

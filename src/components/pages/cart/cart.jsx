@@ -17,9 +17,6 @@ export default function Cart() {
         }
         setTotal(calculatedTotal);
     }, [products]);
-    // for(let p of products){
-    //     //console.log(p.image);
-    // }
     const dispatch = useDispatch();
     const handleRemove = (product) => {
         dispatch(removeToCart(product))
