@@ -1,4 +1,4 @@
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import Axios from 'axios';
 import Navbar from '../../navbar/navbar';
@@ -6,6 +6,7 @@ import { addToCart } from '../../../actions';
 import { useDispatch } from 'react-redux';
 import { baseUrl } from '../../../Url';
 import './show.css';
+
 import { Button } from '@mui/material';
 import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
 import StarIcon from '@mui/icons-material/Star';
@@ -17,6 +18,7 @@ const Show = () => {
     const [product, setProduct] = useState([]);
     const [imageArray,setImageArray]=useState([])
     const dispatch = useDispatch();
+    const navigate=useNavigate();
     useEffect(() => {
         const fetchProduct = async () => {
             try {
@@ -47,6 +49,9 @@ const Show = () => {
     const [idx, setidx] = useState(0);
     const updateIdx = (i) => {
         setidx(i)
+    }
+    const handleEdit=(id)=>{
+        navigate('/edit',{state:{id:id}});
     }
     return (
         <div>
@@ -116,6 +121,7 @@ const Show = () => {
                         </span>
                         <span className='addCart' style={{ marginTop: '40px' }}>
                             <Button onClick={() => handleCart(product)} style={{ backgroundColor: 'rgb(29, 58, 81)', color: 'white', borderRadius: '0', width: '270px', height: '60px' }}>Add to Cart<ShoppingCartIcon style={{ paddingLeft: '15px' }} /></Button>
+                            <Button onClick={()=>handleEdit(product._id)} style={{ backgroundColor: 'rgb(29, 58, 81)', color: 'white', borderRadius: '0', width: '270px', height: '60px',marginLeft:'5px' }}>Edit<ShoppingCartIcon style={{ paddingLeft: '15px' }} /></Button>
                         </span>
                     </div>
                 </div>

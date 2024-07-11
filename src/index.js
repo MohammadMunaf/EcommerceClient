@@ -15,6 +15,7 @@ import Cart from './components/pages/cart/cart';
 import { Provider } from 'react-redux';
 import store from './store';
 import ProductList from './components/pages/productList/productList';
+import EditPage from './components/pages/edit/edit'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -25,6 +26,7 @@ const router = createBrowserRouter(
       <Route path="upload" element={<Upload />} />
       <Route path="searchItems" element={<ShowItems />} />
       <Route path="cart" element={<Cart />} />
+      <Route path="edit" element={<EditPage/>}/>
     </Route>
   )
 );

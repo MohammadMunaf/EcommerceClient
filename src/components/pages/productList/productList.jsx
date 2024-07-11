@@ -7,16 +7,16 @@ import './productList.css'
 import Axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import ManIcon from '@mui/icons-material/Man';
-import Woman2Icon from '@mui/icons-material/Woman2';
-import EscalatorWarningIcon from '@mui/icons-material/EscalatorWarning';
+
 import CandlestickChartIcon from '@mui/icons-material/CandlestickChart';
 import BubbleChartIcon from '@mui/icons-material/BubbleChart';
 import Checkbox from '@mui/material/Checkbox';
 import { baseUrl } from '../../../Url';
 import Footer from '../../footer/footer';
 import Navbar from '../../navbar/navbar';
+import WebhookIcon from '@mui/icons-material/Webhook';
 import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
-import { Radio } from '@mui/material';
+import SnowshoeingIcon from '@mui/icons-material/Snowshoeing';
 import StarIcon from '@mui/icons-material/Star';
 export default function ProductList() {
     const navigate = useNavigate();
@@ -25,9 +25,9 @@ export default function ProductList() {
         button: "",
     });
     const [mp, setmp] = useState(new Map([
-        ["Men", { BackgroundColor: 'white', Color: 'rgb(82, 81, 81)' }],
-        ["Women", { BackgroundColor: 'white', Color: 'rgb(82, 81, 81)' }],
-        ["Children", { BackgroundColor: 'white', Color: 'rgb(82, 81, 81)' }],
+        ["Shirts", { BackgroundColor: 'white', Color: 'rgb(82, 81, 81)' }],
+        ["Jeans", { BackgroundColor: 'white', Color: 'rgb(82, 81, 81)' }],
+        ["Boots", { BackgroundColor: 'white', Color: 'rgb(82, 81, 81)' }],
         ["Shirt", { BackgroundColor: 'white', Color: 'rgb(82, 81, 81)' }],
         ["Tshirt", { BackgroundColor: 'white', Color: 'rgb(82, 81, 81)' }],
     ]));
@@ -60,6 +60,7 @@ export default function ProductList() {
                 console.log(`error-->${e}`);
             })
     }
+   
     const updateButtonValue = (category) => {
         let prevButton = buttonClick.button;
         if (prevButton === category) {
@@ -151,31 +152,32 @@ export default function ProductList() {
                         <div className='catogory1' style={{ textAlign: "left" }}>
                             <h2 style={{ fontSize: '30px' }}>Catogeries</h2>
                             <button
-                                onClick={() => updateButtonValue("Men")}
+                                onClick={() => updateButtonValue("Shirts")}
                                 style={{
-                                    backgroundColor: mp.get("Men").BackgroundColor,
-                                    color: mp.get("Men").Color
+                                    backgroundColor: mp.get("Shirts").BackgroundColor,
+                                    color: mp.get("Shirts").Color
                                 }}
                             >
+                                
                                 <ManIcon style={{ marginBottom: '-5px', width: '2em' }} />
-                                Men
+                                Shirts
                             </button>
                             <button
-                                onClick={() => updateButtonValue("Women")}
+                                onClick={() => updateButtonValue("Jeans")}
                                 style={{
-                                    backgroundColor: mp.get("Women").BackgroundColor,
-                                    color: mp.get("Women").Color
+                                    backgroundColor: mp.get("Jeans").BackgroundColor,
+                                    color: mp.get("Jeans").Color
                                 }}
                             >
-                                <Woman2Icon style={{ marginBottom: '-5px', width: '2em' }} />
-                                Women
+                                <WebhookIcon style={{ marginBottom: '-5px', width: '2em' }} />
+                                Jeans
                             </button>
                             <button
-                                onClick={() => updateButtonValue("Children")}
-                                style={{ backgroundColor: mp.get("Children").BackgroundColor, color: mp.get("Children").Color }}
+                                onClick={() => updateButtonValue("Boots")}
+                                style={{ backgroundColor: mp.get("Boots").BackgroundColor, color: mp.get("Boots").Color }}
                             >
-                                < EscalatorWarningIcon style={{ marginBottom: '-5px', width: '2em' }} />
-                                Children
+                                <SnowshoeingIcon style={{ marginBottom: '-5px', width: '2em' }} />
+                                Boots
                             </button>
                             <button
                                 onClick={() => updateButtonValue("Shirt")}
@@ -240,7 +242,7 @@ export default function ProductList() {
                                         </span>
                                     </div>
                                 </Link>
-                                {/* <Button onClick={() => handleDelete(product._id)} style={{backgroundColor:'red',height:'15px',color:'white'}}>Delete</Button> */}
+                                <Button onClick={() => handleDelete(product._id)} style={{backgroundColor:'red',height:'15px',color:'white'}}>Delete</Button>
                             </Card>
                         ))}
                     </div>

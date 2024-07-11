@@ -32,7 +32,7 @@ export default function Navbar() {
     }
     return (
         <div className='navbar'>
-            <h4 style={{marginLeft:"35px",letterSpacing:'10px',color:'aliceblue'}}>Be Stylish</h4>
+            <h4 style={{marginLeft:"35px",letterSpacing:'10px',color:'aliceblue'}}>Stylish Men</h4>
             <SearchBar />
             <div>
             <Button><Link to='/'><RoofingRoundedIcon /></Link></Button>

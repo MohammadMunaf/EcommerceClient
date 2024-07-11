@@ -2,25 +2,20 @@ import React from 'react'
 import { Slide } from 'react-slideshow-image'
 import 'react-slideshow-image/dist/styles.css';
 import './imageSlider.css';
-import { useState } from 'react';
-import Button from '@mui/material/Button';
-import WomanIcon from '@mui/icons-material/Woman';
 import ManIcon from '@mui/icons-material/Man';
+import SnowshoeingIcon from '@mui/icons-material/Snowshoeing';
 import DryCleaningIcon from '@mui/icons-material/DryCleaning';
 import SleddingIcon from '@mui/icons-material/Sledding';
-import SkateboardingIcon from '@mui/icons-material/Skateboarding';
 import SatelliteAltIcon from '@mui/icons-material/SatelliteAlt';
-import ProductList from '../pages/productList/productList';
+import WebhookIcon from '@mui/icons-material/Webhook';
 import { Link } from 'react-router-dom';
 import Axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-
 import { baseUrl } from '../../Url';
 
 
 
 const ImageSlider = () => {
-  const [idx, setIdx] = useState(0);
   const value = [
     "",
     "Summer Collection ",
@@ -76,10 +71,10 @@ const ImageSlider = () => {
           < ManIcon style={{ fontSize: '49px' }} />
         </div>
         <div onClick={()=>handleSubmit("Women")} className='card' style={{ marginRight: '5px' }}>
-          <WomanIcon style={{ fontSize: '49px' }} />
+          <WebhookIcon style={{ fontSize: '49px' }} />
         </div>
         <div onClick={()=>handleSubmit("Clild")} className='card' style={{ marginRight: '5px' }}>
-          <SkateboardingIcon style={{ fontSize: '49px' }} />
+          <SnowshoeingIcon style={{ fontSize: '49px' }} />
         </div>
         <div onClick={()=>handleSubmit("Men")} className='card' style={{ marginRight: '5px' }}>
           <SleddingIcon style={{ fontSize: '49px' }} />
