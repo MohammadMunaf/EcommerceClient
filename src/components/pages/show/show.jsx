@@ -121,7 +121,7 @@ const Show = () => {
                         </span>
                         <span className='addCart' style={{ marginTop: '40px' }}>
                             <Button onClick={() => handleCart(product)} style={{ backgroundColor: 'rgb(29, 58, 81)', color: 'white', borderRadius: '0', width: '270px', height: '60px' }}>Add to Cart<ShoppingCartIcon style={{ paddingLeft: '15px' }} /></Button>
-                            <Button onClick={()=>handleEdit(product._id)} style={{ backgroundColor: 'rgb(29, 58, 81)', color: 'white', borderRadius: '0', width: '270px', height: '60px',marginLeft:'5px' }}>Edit<ShoppingCartIcon style={{ paddingLeft: '15px' }} /></Button>
+                            {/* <Button onClick={()=>handleEdit(product._id)} style={{ backgroundColor: 'rgb(29, 58, 81)', color: 'white', borderRadius: '0', width: '270px', height: '60px',marginLeft:'5px' }}>Edit<ShoppingCartIcon style={{ paddingLeft: '15px' }} /></Button> */}
                         </span>
                     </div>
                 </div>
