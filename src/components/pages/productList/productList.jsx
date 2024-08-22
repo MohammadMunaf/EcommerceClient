@@ -242,7 +242,7 @@ export default function ProductList() {
                                         </span>
                                     </div>
                                 </Link>
-                                <Button onClick={() => handleDelete(product._id)} style={{backgroundColor:'red',height:'15px',color:'white'}}>Delete</Button>
+                                {/* <Button onClick={() => handleDelete(product._id)} style={{backgroundColor:'red',height:'15px',color:'white'}}>Delete</Button> */}
                             </Card>
                         ))}
                     </div>

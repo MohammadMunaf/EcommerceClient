@@ -12,7 +12,7 @@ export default function NewArrival() {
     const fetchData = (value) => {
         Axios.get(`${baseUrl}/products?q=${value}&l=${8}`)
             .then((response) => {
-                setallproduct(response.data.filter((p) => p.date >= '2024-04-01'));
+                setallproduct(response.data);
             })
             .catch((e) => {
                 console.error(`error-->${e}`);
