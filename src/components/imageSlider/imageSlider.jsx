@@ -16,6 +16,7 @@ import { baseUrl } from '../../Url';
 
 
 const ImageSlider = () => {
+  
   const value = [
     "",
     "Summer Collection ",
@@ -29,7 +30,7 @@ const ImageSlider = () => {
   ];
   const propertes = {
     duration: 2000,
-    transitionDuration: 100,
+    transitionDuration: 400,
     infinite: true,
     indicators: false,
     arrows: true
@@ -38,15 +39,14 @@ const ImageSlider = () => {
   const handleSubmit = (val) => {
     // event.preventDefault();
     Axios.get(`${baseUrl}/search?q=${val}`)
-        .then((response) => {
-            //setproduct(response.data);
-            navigate('/searchItems', { state: { fetchedData: response.data } });
-            // console.log(response.data);
-        }).catch((e) => {
-            console.log(`error-->${e}`);
-        })
-        
-}
+        // .then((response) => {
+        //     //setproduct(response.data);
+        //     navigate('/searchItems', { state: { fetchedData: response.data } });
+        //     console.log(response.data);
+        // }).catch((e) => {
+        //     console.log(`error-->${e}`);
+        // });
+    }
   return (
     <div className="slide-container">
       <Slide {...propertes}>
@@ -67,19 +67,19 @@ const ImageSlider = () => {
             <DryCleaningIcon style={{ fontSize: '49px' }} />
           </div>
         </Link>
-        <div onClick={()=>handleSubmit("Men")} className='card' style={{ marginRight: '5px' }}>
+        <div onClick={()=>handleSubmit("Shirts")} className='card' style={{ marginRight: '5px' }}>
           < ManIcon style={{ fontSize: '49px' }} />
         </div>
-        <div onClick={()=>handleSubmit("Women")} className='card' style={{ marginRight: '5px' }}>
+        <div onClick={()=>handleSubmit("Jeans")} className='card' style={{ marginRight: '5px' }}>
           <WebhookIcon style={{ fontSize: '49px' }} />
         </div>
-        <div onClick={()=>handleSubmit("Clild")} className='card' style={{ marginRight: '5px' }}>
+        <div onClick={()=>handleSubmit("Boots")} className='card' style={{ marginRight: '5px' }}>
           <SnowshoeingIcon style={{ fontSize: '49px' }} />
         </div>
-        <div onClick={()=>handleSubmit("Men")} className='card' style={{ marginRight: '5px' }}>
+        <div onClick={()=>handleSubmit("Shirt")} className='card' style={{ marginRight: '5px' }}>
           <SleddingIcon style={{ fontSize: '49px' }} />
         </div>
-        <div onClick={()=>handleSubmit("Men")} className='card' style={{ marginRight: '5px' }}>
+        <div onClick={()=>handleSubmit("Tshirt")} className='card' style={{ marginRight: '5px' }}>
           <SatelliteAltIcon style={{ fontSize: '49px' }} />
         </div>
       </div>

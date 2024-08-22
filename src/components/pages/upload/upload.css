@@ -20,3 +20,39 @@
     width: 100%;
     margin-bottom: 10px;
 }
+.imageUploader .btn-widget-btn{
+    border:0.7px solid rgb(105, 104, 104);
+}
+@media (max-width:1250px){
+    .uploadFormBox{
+       width:30%;
+    }
+}
+@media (max-width:1050px){
+    .uploadFormBox{
+       width:40%;
+    }
+}
+@media (max-width:850px){
+    .uploadFormBox{
+       width:50%;
+    }
+}
+@media (max-width:650px){
+    .uploadFormBox{
+       width:70%;
+    }
+}
+@media (max-width:450px){
+    .uploadFormBox{
+       width:90%;
+    }
+}
+@media (max-width:350px){
+    .uploadFormBox{
+       width:90%;
+    }
+    .priceBox{
+        flex-direction: column;
+    }
+}

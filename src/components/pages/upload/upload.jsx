@@ -1,72 +1,71 @@
 import Axios from 'axios';
-import { useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { baseUrl } from '../../../Url';
+import { useState } from 'react';
 import TextField from '@mui/material/TextField';
 import './upload.css';
+import { baseUrl } from '../../../Url';
 import Button from '@mui/material/Button';
-import Navbar from '../../navbar/navbar';
-
+import MenuItem from '@mui/material/MenuItem';
+import Select from '@mui/material/Select';
+import InputLabel from '@mui/material/InputLabel';
 
 export default function Upload() {
+    const [image, setImage] = useState([]);
     const [formData, setformData] = useState({
         Name: "",
         Description: "",
         images: [],
         price: "",
-        category: ""
+        category: "",
+        brand: ""
     });
-    const fileInputRef = useRef(null);
+
     const handleChange = (evt) => {
-        const { name, value, files } = evt.target;
-        if (name === 'images') {
-            setformData(currData => ({
-                ...currData,
-                images: Array.from(files)
-            }));
-        }
-        else {
-            setformData(currData => ({
-                ...currData,
-                [name]: value,
-            }))
-        }
+        const { name, value } = evt.target;
+        setformData(currData => ({
+            ...currData,
+            [name]: value,
+        }))
+
     }
     const handleSubmit = async (event) => {
-        const formPayload = new FormData();
-        formPayload.append('Name', formData.Name);
-        formPayload.append('Description', formData.Description);
-        for (let i = 0; i < formData.images.length; i++) {
-            formPayload.append('images', formData.images[i]);
+        for (let img of image) {
+            formData.images.push(img);
         }
-        formPayload.append('price', formData.price);
-        formPayload.append('category', formData.category);
-
-        Axios.post(`${baseUrl}/upload`, formPayload, {
-            headers: {
-                'Content-Type': 'multipart/form-data', // This is handled automatically by Axios and FormData
-                "Custom-Header": "value",
-            }
-        })
+        //console.log(formData);
+        Axios.post(`${baseUrl}/upload`, formData)
             .then((response) => {
-                console.log("upload successfully");
+               // console.log(response);
                 setformData({
                     Name: "",
                     Description: "",
                     images: [],
                     price: "",
                     category: "",
+                    brand: "",
                 })
-                if (fileInputRef.current) {
-                    fileInputRef.current.value = ''; // Clear the file input
-                }
+                setImage([]);
             }).catch((e) => {
                 console.log(`error-->${e}`);
             })
     }
+    const openWidget = () => {
+        const widget = window.cloudinary.createUploadWidget(
+            {
+                cloudName: 'dl6otmbjy',
+                uploadPreset: 'tzmfkpmg',
+                max_files: '1',
+            },
+            (error, result) => {
+                if (result.event === 'success') {
+                    //console.log(result.info.secure_url);
+                    setImage([...image, result.info.secure_url])
+                }
+            },
+        ).open();
+    };
     return (
         <div className='uploadForm'>
-            <Navbar />
+            {/* <Navbar /> */}
             <div className='formBox'>
                 <form className='uploadFormBox' encType='multipart/form-data'>
                     <h2 style={{ textAlign: 'center', color: 'rgb(29, 58, 81)' }}>Upload New Product</h2>
@@ -79,9 +78,8 @@ export default function Upload() {
                             onChange={handleChange} label="Description" variant="outlined" size="small" style={{ width: '100%', marginTop: '10px' }} />
                     </div>
                     <div>
-                        <input type="file" name='images' multiple onChange={handleChange} ref={fileInputRef}/>
-                        {/* <TextField id="url" name="url" value={formData.url}
-                            onChange={handleChange} label="Image Url" variant="outlined" size="small" style={{ width: '100%', marginTop: '10px' }} /> */}
+                        <TextField id="brand" name="brand" value={formData.brand}
+                            onChange={handleChange} label="brand" variant="outlined" size="small" style={{ width: '100%', marginTop: '10px' }} />
                     </div>
                     <div className='priceBox'>
                         <div>
@@ -89,9 +87,30 @@ export default function Upload() {
                                 onChange={handleChange} label="price" variant="outlined" size="small" style={{ width: '99%', marginTop: '10px' }} />
                         </div>
                         <div>
-                            <TextField id="category" name="category" value={formData.category}
-                                onChange={handleChange} label="category" variant="outlined" size="small" style={{ width: '100%', marginTop: '10px' }} />
+                        <InputLabel id="category" sx={{fontSize:'10px',margin:0,marginLeft:'8px',marginBottom:'-8px'}}>category</InputLabel>
+                            <Select
+                            labelId="category"
+                                id="category"
+                                value={formData.category}
+                                onChange={handleChange}
+                                name="category"
+                                sx={{ m: 1, width: 192,height:34 ,margin:0,marginTop:1}}
+                                //label="category"
+                            >
+                                <MenuItem value="Chinos">Chinos</MenuItem>
+                                <MenuItem value='Jeans'>Jeans</MenuItem>
+                                <MenuItem value='Boots'>Boots</MenuItem>
+                                <MenuItem value='Tshirt'>Tshirts</MenuItem>
+                                <MenuItem value='Shirts'>Shirts</MenuItem>
+                            </Select>
                         </div>
+                    </div>
+                    <div className='imageUploader'>
+                        <Button type="button" disabled={image.length >= 3 ? true : false} className="btn-widget-btn" onClick={openWidget}>Upload image {image.length}</Button>
+                        <p style={{ marginTop: '-1px', fontSize: '12px', color: 'grey' }}>max 3 images is allowed</p>
+                        {image.map((ele) => (
+                            <img src={ele} alt="" style={{ width: "50px" }} />
+                        ))}
                     </div>
                     <Button onClick={handleSubmit} style={{ width: '100%', backgroundColor: 'green', color: 'white' }}>Add</Button>
                 </form>
