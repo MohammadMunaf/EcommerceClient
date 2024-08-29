@@ -233,7 +233,7 @@ export default function ProductList() {
                                         component="img"
                                         alt="green iguana"
                                         height="220"
-                                        image={product.images[2].url}
+                                        image={product.images[2]}
                                     />
                                     <div className="newArrivalProductDetails" style={{ color: 'GrayText', textAlign: 'center' }}>
                                         <span>

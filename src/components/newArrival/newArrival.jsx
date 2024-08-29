@@ -37,7 +37,7 @@ export default function NewArrival() {
                                     alt="green iguana"
                                     width="100"
                                     height="220"
-                                    image={product.images[2].url}
+                                    image={product.images[2]}
 
                                 />
                                 <div className="newArrivalProductDetails" style={{ color: 'GrayText', textAlign: 'center' }}>

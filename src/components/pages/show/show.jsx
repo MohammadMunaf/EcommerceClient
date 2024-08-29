@@ -24,7 +24,7 @@ const Show = () => {
             try {
                 const response = await Axios.get(`${baseUrl}/show/${userId}`);
                 setProduct(response.data);
-                setImageArray(response.data.images.map(f=>(f.url)));
+                setImageArray(response.data.images);
             } catch (error) {
                 console.error(`Error fetching product: ${error}`);
             }

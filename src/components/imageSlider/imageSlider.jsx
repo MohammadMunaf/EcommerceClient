@@ -29,8 +29,8 @@ const ImageSlider = () => {
     "https://theadultman.com/wp-content/uploads/2021/11/Taylor-Stitch-review.jpg"
   ];
   const propertes = {
-    duration: 2000,
-    transitionDuration: 400,
+    duration: 2500,
+    transitionDuration: 700,
     infinite: true,
     indicators: false,
     arrows: true
